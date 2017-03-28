@@ -3,8 +3,6 @@
 
 describe('Create An Event', function () {
 
-
-  protractor.ignoreSynchronization = true;
   var homepage     = require('./../pageObjects/homepage.js');
   var signup     = require('./../pageObjects/signup.js');
   var login     = require('./../pageObjects/login.js');
@@ -17,10 +15,9 @@ describe('Create An Event', function () {
   describe('Home Page', function () {
     it('should get to the landing page of Events.com', function(){
       browser.get('https://events.com/');
-      expect(browser.getCurrentUrl()).toEqual('https://events.com//');
+      expect(browser.getCurrentUrl()).toEqual('https://events.com//'); // Will fail here, since the url shoud be events.com/ 
     });
     it('should validate there is a Create An Event Button enabled', function () {
-      browser.sleep(10000);
       expect(homepage.btnCreateEvent.isDisplayed()).toBeTruthy();
       expect(homepage.btnCreateEvent.isEnabled()).toBeTruthy();
     });
@@ -53,13 +50,13 @@ describe('Create An Event', function () {
       signup.btnSignUp.click();
       expect(signup.labelOnErrorEmail.getText()).toContain('Please Enter a password');
     });
-    xit('should Signup Successfully', function(){
+    it('should Signup Successfully', function(){
       signup.tbPassword.clear();
       signup.tbPassword.write('Password@11');
       signup.btnSignUp.click();
       expect(browser.getCurrentUrl()).toContain('https://my.events.com/#/en_US/events');
     });
-    xit('should logout', function(){
+    it('should logout', function(){
       element(by.css(['ng-click="closeAllExcept(); logOut()"'])).click();
       expect(element(by.css(['ng-click="closeAllExcept(); logOut()"'])).isPresent()).toBeFalsy();
     });
