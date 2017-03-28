@@ -1,43 +1,35 @@
 'use strict';
 
-var protoTextBox = function (elm) {
+var protoButton = function (elm) {
   this.webElement = elm;
 };
 
-protoTextBox.prototype.isEnabled = function () {
+protoButton.prototype.isEnabled = function () {
   return this.webElement.isEnabled();
 };
 
-protoTextBox.prototype.click = function () {
-  return this.webElement.click();
+protoButton.prototype.getLabel = function () {
+  return this.webElement.getText();
 };
 
-protoTextBox.prototype.clear = function () {
-  return this.webElement.clear();
+protoButton.prototype.select = function () {
+  this.webElement.click();
 };
 
-protoTextBox.prototype.read = function () {
-  return this.webElement.getAttribute('value');
+protoButton.prototype.click = function () {
+  this.webElement.click();
 };
 
-protoTextBox.prototype.write = function (txt, enter) {
-  if(enter){
-    return this.webElement.sendKeys(txt, protractor.Key.ENTER);
-  }else{
-    return this.webElement.sendKeys(txt);
-  }
-};
-
-protoTextBox.prototype.getAttribute = function (attribute) {
+protoButton.prototype.getAttribute = function (attribute) {
   return this.webElement.getAttribute(attribute);
 };
 
-protoTextBox.prototype.isPresent = function() {
-  return this.webElement.isPresent ();
+protoButton.prototype.isPresent  = function() {
+  return this.webElement.isPresent();
 };
 
-protoTextBox.prototype.isDisplayed = function() {
+protoButton.prototype.isDisplayed = function() {
   return this.webElement.isDisplayed();
 };
 
-module.exports = protoTextBox;
+module.exports = protoButton;
